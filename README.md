@@ -8,5 +8,5 @@ $ python -m SimpleHTTPServer
 
 The exmaples included are:
 * Counties
-* 
+* Bar charts
 
