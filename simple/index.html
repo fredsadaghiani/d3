@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+  .chart div {
+    font: 10px sans-serif;
+    background-color: steelblue;
+    text-align: right;
+    padding: 3px;
+    margin: 1px;
+    color: white;
+  }
+
+</style>
+<body>
+  <script src="http://d3js.org/d3.v3.min.js"></script>
+  <h1>Simple</h1>
+  <p>This is based on code and data by <a href="http://bost.ocks.org/mike/bar/">Mike Bostock</a>.</p>
+  <script>
+
+    <!-- plain javascript -->
+    var div = document.createElement("div");
+    div.innerHTML = "Hello world!";
+    document.body.appendChild(div);
+
+    <!-- using d3 selectors -->
+
+    d3.select("body")
+      .style("background-color", "#eee")
+      .append("div")
+      .html("Hello world!");
+
+  </script>
+
+  <p>hard coded chart:</p>
+  <div class="chart">
+    <div style="width: 40px;">4</div>
+    <div style="width: 80px;">8</div>
+    <div style="width: 150px;">15</div>
+    <div style="width: 160px;">16</div>
+    <div style="width: 230px;">23</div>
+    <div style="width: 420px;">42</div>
+  </div>
+
+  <p>d3 chart:</p>
+  <div id="d3chart" class="chart">
+  </div>
+
+  <script>
+    var data = [ 1,2,3,4,5,6,7,8,10,3,5,6];
+
+    var x = d3.scale.linear()
+      .domain([0, d3.max(data)])
+      .range([0, 500]);
+
+
+    d3.select("#d3chart")
+      .selectAll("div")
+        .data(data)
+      .enter().append("div")
+        .style("width", function(d) { return x(d) + "px"; })
+        .text(function(d) { return d; });
+
+  </script>
+
+</body>
